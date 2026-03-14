@@ -1,0 +1,54 @@
+
+
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Resumen de Acta</ion-title>
+    <ion-buttons slot="end">
+      <img src="assets/logo.jpeg" width="40px" heigth="36px" >
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="contenedor-formulario">
+
+    <ion-row class="input-group">
+      <ion-col size="7"><ion-label>Mesa:</ion-label></ion-col>
+      <ion-col size="5"><input type="text" [(ngModel)]="mesa" class="custom-input"></ion-col>
+    </ion-row>
+
+    <ion-row class="input-group">
+      <ion-col size="7"><ion-label>Recinto:</ion-label></ion-col>
+      <ion-col size="5"><input type="text" [(ngModel)]="recinto" class="custom-input"></ion-col>
+    </ion-row>
+
+    <div class="foto-section ion-margin-vertical">
+      <ion-button expand="block" color="medium" (click)="tomarFoto()">
+        <ion-icon name="camera-outline" slot="start"></ion-icon>
+        TOMAR FOTO DEL ACTA
+      </ion-button>
+
+      <div *ngIf="fotoActa" class="preview-container">
+        <img [src]="fotoActa" class="img-preview" />
+        <p class="success-text">✓ Foto capturada</p>
+      </div>
+    </div>
+
+    <ion-row class="input-group">
+      <ion-col size="7"><ion-label>Votos Alcalde:</ion-label></ion-col>
+      <ion-col size="5"><div class="custom-input readonly">{{totalAlcalde}}</div></ion-col>
+    </ion-row>
+
+    <ion-row class="input-group">
+      <ion-col size="7"><ion-label>Votos Concejal:</ion-label></ion-col>
+      <ion-col size="5"><div class="custom-input readonly">{{totalConcejal}}</div></ion-col>
+    </ion-row>
+
+    <div class="ion-padding-top">
+      <button class="btn-enviar" (click)="enviarDatos()">
+        Enviar a Centro de Cómputo
+      </button>
+    </div>
+
+  </div>
+</ion-content>

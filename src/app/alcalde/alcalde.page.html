@@ -1,0 +1,123 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      <Strong>Alcaldes</Strong>
+      <div class="admin">Quillacollo</div>
+    </ion-title>
+    <ion-buttons slot="end">
+      <img src="assets/logo.jpeg" width="40px" heigth="36px" >
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+<!-- CABECERA -->
+
+<ion-grid class="tabla-acta">
+
+<ion-row class="header">
+
+      <ion-col size="1">#</ion-col>
+
+      <ion-col size="4">Partido</ion-col>
+
+      <ion-col size="5">Candidato</ion-col>
+
+      <ion-col size="2" class="center">
+      Votos
+     </ion-col>
+</ion-row>
+<ion-row *ngFor="let c of candidatos; let i=index" class="fila" [class.fila-enfocada]="filaActiva === i">
+    <ion-col size="1" class="num">
+    {{i+1}}
+    </ion-col>
+
+    <ion-col size="4" class="partido">
+      <ion-thumbnail>
+        <img [src]="'assets/partidos/'+c.logo" class="logo">
+      </ion-thumbnail>
+      {{c.partido}}
+    </ion-col>
+
+    <ion-col size="5" class="candidato">
+        <ion-thumbnail>
+          <img [src]="'assets/'+c.logo" class="logo">
+        </ion-thumbnail>
+        {{c.nombre}}
+    </ion-col>
+
+<ion-col size="2" class="center">
+     <ion-input  style ="background-color: rgb(182, 185, 188); border: darkblue; border-color: black;"
+            type="text"
+            class="input-votos"
+            maxlength="3"
+            [(ngModel)]="c.votos"
+            (ionInput)="soloNumeros($event)"
+            (ionFocus)="setFilaActiva(i); seleccionarContenido($event)"
+            (ionBlur)="setFilaActiva(null)"
+    >   </ion-input>
+</ion-col>
+
+</ion-row>
+
+<!-- BLANCOS -->
+
+<ion-row class="extra">
+
+<ion-col size="10">
+– Votos en Blanco
+</ion-col>
+
+<ion-col size="2" class="center">
+
+<ion-input style ="background-color: rgb(182, 185, 188); border: darkblue; border-color: black;"
+type="number"
+[(ngModel)]="blancos"
+(input)="soloNumeros($event)"
+></ion-input>
+
+</ion-col>
+
+</ion-row>
+
+<!-- NULOS -->
+
+<ion-row class="extra">
+
+<ion-col size="10">
+× Votos Nulos
+</ion-col>
+
+<ion-col size="2" class="center">
+
+<ion-input style ="background-color: rgb(182, 185, 188); border: darkblue; border-color: black;"
+type="number"
+[(ngModel)]="nulos"
+(input)="soloNumeros($event)"
+></ion-input>
+
+</ion-col>
+
+</ion-row>
+
+<!-- TOTAL -->
+<br>
+<ion-item color="light">
+  <ion-label><strong>Total</strong></ion-label>
+  <ion-badge color="success">{{total}}</ion-badge>
+</ion-item>
+<br>
+</ion-grid>
+  <div class="footer-btn">
+    <ion-button expand="block" color="primary" (click)="continuar()">
+      CONTINUAR A CONCEJALES
+      <ion-icon name="arrow-forward-outline" slot="end"></ion-icon>
+    </ion-button>
+  </div>
+
+</ion-content>
+

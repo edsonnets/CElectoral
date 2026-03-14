@@ -1,0 +1,151 @@
+/*.tabla-acta{
+
+font-size:14px;
+
+}
+
+.header{
+
+background:#cfd8e6;
+font-weight:bold;
+
+}
+
+.fila{
+
+border-bottom:1px solid #d8dde5;
+
+}
+
+.extra{
+
+background:#f4f6fb;
+
+}
+
+.total{
+
+background:#d9ecff;
+font-weight:bold;
+
+}
+
+
+
+.center{
+
+text-align:center;
+
+}
+
+.num{
+
+font-weight:bold;
+
+}
+
+
+
+.partido{
+
+display:flex;
+align-items:center;
+gap:3px;
+
+}
+
+.logo{
+
+width:6px;
+height:6px;
+
+}
+
+
+
+.candidato{
+
+display:flex;
+align-items:center;
+gap:8px;
+
+}
+
+.foto{
+
+width:22px;
+height:22px;
+border-radius:50%;
+
+}
+
+*/
+
+.input-votos {
+  width: 45px;
+  height: 28px;
+  text-align:center;
+  border: 1px solid #c8c8c8;
+  border-radius: 4px;
+  --background: rgb(191, 214, 250); // En Ionic, background se maneja con variables
+}
+
+
+/* logo del partido */
+
+.logo{
+width:8px;
+height:8px;
+min-width:8px;
+object-fit:contain;
+}
+
+/* foto del candidato */
+
+.foto{
+width:12px;
+height:12px;
+min-width:12px;
+border-radius:50%;
+object-fit:cover;
+}
+
+/* contenedores */
+
+.partido{
+display:flex;
+align-items:center;
+gap:4px;
+overflow:hidden;
+}
+
+.candidato{
+display:flex;
+align-items:center;
+gap:6px;
+overflow:hidden;
+}
+
+/* texto no rompa layout */
+
+.partido span,
+.candidato span{
+white-space:nowrap;
+overflow:hidden;
+text-overflow:ellipsis;
+}
+.fila {
+  transition: background-color 0.2s ease;
+  border-bottom: 1px solid #d8dde5; // Para que se vea la separación
+}
+
+/* Esta clase se activa dinámicamente */
+.fila-enfocada {
+  background-color: #d1e3ff !important; /* Un azul claro que resalte */
+
+  // Opcional: Resaltar los textos de la fila enfocada
+  .num, .partido, .candidato {
+    font-weight: bold;
+    color: var(--ion-color-primary-shade);
+  }
+}

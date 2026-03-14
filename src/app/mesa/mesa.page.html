@@ -1,0 +1,63 @@
+<!-- <ion-header>
+<ion-toolbar color="primary">
+<ion-title>Mesa Electoral</ion-title>
+</ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+<ion-item>
+<ion-label position="floating">Mesa</ion-label>
+<ion-input [(ngModel)]="mesa"></ion-input>
+</ion-item>
+
+<ion-item>
+<ion-label position="floating">Recinto</ion-label>
+<ion-input [(ngModel)]="recinto"></ion-input>
+</ion-item>
+
+<br>
+
+<ion-button expand="full" (click)="continuar()">
+Continuar
+</ion-button>
+
+</ion-content> -->
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      <Strong>Inicio</Strong>
+      <div class="admin">VotosApp</div>
+    </ion-title>
+    <ion-buttons slot="end">
+      <img src="assets/logo.jpeg" width="40px" heigth="36px" >
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+<div class="d-flex-center">
+  <ion-card >
+  <ion-card-header >
+    <ion-card-title class="d-flex-center">F.R.I.</ion-card-title>
+    <ion-card-title class="d-flex-center">Control Electoral</ion-card-title>
+    <ion-card-title class="d-flex-center">VotosApp</ion-card-title>
+
+
+  </ion-card-header>
+
+  <ion-card-content>
+    <img src="../../../assets/const.jpg">
+  </ion-card-content>
+</ion-card>
+
+</div>
+<ion-button expand="full" (click)="continuar()">
+ LLenar Acta de Alcaldes
+</ion-button>
+<ion-button expand="full" (click)="continuar2()">
+ LLenar Acta de Concejales
+</ion-button>
+
