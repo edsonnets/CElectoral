@@ -8,7 +8,7 @@ import { provideHttpClient } from '@angular/common/http';
 import { UtilsService } from '../../services/utils.service';
 //import {User} from '../../models/user.model'
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-//import { ContribuyenteService } from 'src/services/contribuyente.service';
+import { ContribuyenteService } from 'src/services/contribuyente.service';
 import { SharedModule } from 'src/app/shared/shared.module';
 
 @Component({
@@ -32,7 +32,7 @@ export class LoginPage implements OnInit {
   username!: string;
   password!: string;
   userlist:any[]=[];
-  constructor( private route:Router, /*private user: ContribuyenteService*/) {
+  constructor( private route:Router, private user: ContribuyenteService) {
 
    }
 
@@ -80,7 +80,7 @@ export class LoginPage implements OnInit {
        let name = this.form.value.email;
        let pass = this.form.value.password;
        localStorage.removeItem('token');
-       if(name=="admin" && pass=="admin"){
+       /*if(name=="admin" && pass=="admin"){
          localStorage.setItem('token',JSON.stringify("admin"))
           this.route.navigate(["/mesa"]);
           loading.dismiss();
@@ -93,24 +93,17 @@ export class LoginPage implements OnInit {
                   color: 'primary'
                 })
                 loading.dismiss();
-        }
-      /* this.user.login(name!,pass!).subscribe(
+        }*/
+       this.user.login(name!,pass!).subscribe(
         { next: (data:any)=>{
           console.log('El data de user es : ',data)
-              let usuario= data;
+              let usuario= data.user;
               if(usuario){
-                let finded= this.userlist.filter((dato)=>{
-                 return dato.uuidUsuario==usuario.uuid;
-                })//this.userlist.filter((data)=>data.uuidUsuario==usuario.uuid)
-                console.log('El ecnontrado es: ',finded)
-                if (finded.length>0){
-                  console.log('El logeado es: ',finded)
-                  localStorage.setItem('token',JSON.stringify(data.token))
-                  localStorage.setItem('usuario',JSON.stringify(finded[0]))
-                  this.route.navigate(["/tabs/Inicio"]);
 
-
-                }
+                  console.log('El logeado es: ',usuario)
+                  //localStorage.setItem('token',JSON.stringify(data.token))
+                  localStorage.setItem('usuario',JSON.stringify(usuario))
+                  this.route.navigate(["/mesa"]);
                 //localStorage.setItem('user', JSON.stringify(usuario))
 
               }
@@ -118,7 +111,7 @@ export class LoginPage implements OnInit {
               loading.dismiss();
             },
           error: (error)=>{
-                //console.log('Error !: ',error)
+                console.log('Error !: ',error)
                 this.UtilsService.presentToast({
                   message: error.message,
                   duration: 2500,
@@ -129,7 +122,7 @@ export class LoginPage implements OnInit {
           }
 
         }
-      );*/
+      )
 
 
 

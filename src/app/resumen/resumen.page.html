@@ -13,19 +13,19 @@
   <div class="contenedor-formulario">
 
     <ion-row class="input-group">
-      <ion-col size="7"><ion-label>Mesa:</ion-label></ion-col>
-      <ion-col size="5"><input type="text" [(ngModel)]="mesa" class="custom-input"></ion-col>
+      <ion-col size="5"><ion-label>Mesa:</ion-label></ion-col>
+      <ion-col size="7"><input type="text" [(ngModel)]="mesa" class="custom-input"></ion-col>
     </ion-row>
 
     <ion-row class="input-group">
-      <ion-col size="7"><ion-label>Recinto:</ion-label></ion-col>
-      <ion-col size="5"><input type="text" [(ngModel)]="recinto" class="custom-input"></ion-col>
+      <ion-col size="5"><ion-label>Recinto:</ion-label></ion-col>
+      <ion-col size="7"><input type="text" [(ngModel)]="recinto" class="custom-input"></ion-col>
     </ion-row>
 
     <div class="foto-section ion-margin-vertical">
       <ion-button expand="block" color="medium" (click)="tomarFoto()">
         <ion-icon name="camera-outline" slot="start"></ion-icon>
-        TOMAR FOTO DEL ACTA
+        TOMAR FOTO DEL ACTA ALCALDES
       </ion-button>
 
       <div *ngIf="fotoActa" class="preview-container">
@@ -39,6 +39,17 @@
       <ion-col size="5"><div class="custom-input readonly">{{totalAlcalde}}</div></ion-col>
     </ion-row>
 
+    <div class="foto-section ion-margin-vertical">
+      <ion-button expand="block" color="medium" (click)="tomarFoto2()">
+        <ion-icon name="camera-outline" slot="start"></ion-icon>
+        TOMAR FOTO DEL ACTA CONCEJALES
+      </ion-button>
+
+      <div *ngIf="fotoActa2" class="preview-container">
+        <img [src]="fotoActa2" class="img-preview" />
+        <p class="success-text">✓ Foto capturada</p>
+      </div>
+    </div>
     <ion-row class="input-group">
       <ion-col size="7"><ion-label>Votos Concejal:</ion-label></ion-col>
       <ion-col size="5"><div class="custom-input readonly">{{totalConcejal}}</div></ion-col>

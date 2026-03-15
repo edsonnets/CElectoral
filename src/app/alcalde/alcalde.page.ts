@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component,OnDestroy,OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 import { CommonModule } from '@angular/common';
@@ -11,7 +11,7 @@ standalone: true,
 imports: [IonicModule, CommonModule, FormsModule]
 })
 
-export class AlcaldePage {
+export class AlcaldePage implements OnInit, OnDestroy{
 filaActiva: number | null = null; // Para rastrear la fila resaltada
 candidatos = [
 {partido:"UNE",nombre:"Hector Cartagena",logo:"une.jpg",votos:0},
@@ -32,9 +32,22 @@ candidatos = [
 
 blancos = 0;
 nulos = 0;
-
+//TotalVotos = 0;
+mesa="";
 constructor(private router: Router) {}
 
+ngOnInit(): void {
+   this.mesa = localStorage.getItem("mesa")!;
+}
+ngOnDestroy() {
+    if (this.candidatos && this.candidatos.length > 0) {
+      localStorage.setItem('votosAlcalde', JSON.stringify(this.candidatos));
+      localStorage.setItem('blancosA', JSON.stringify(this.blancos));
+      localStorage.setItem('nulosA', JSON.stringify(this.nulos));
+      localStorage.setItem('totalA', JSON.stringify(this.total));
+      console.log('Candidatos guardados automáticamente al salir');
+    }
+  }
 get total() {
 
 let suma = this.candidatos.reduce((a,b)=>a + Number(b.votos),0);
@@ -46,6 +59,9 @@ return suma + Number(this.blancos) + Number(this.nulos);
 continuar(){
 
 localStorage.setItem("votosAlcalde", JSON.stringify(this.candidatos));
+localStorage.setItem('blancosA', JSON.stringify(this.blancos));
+localStorage.setItem('nulosA', JSON.stringify(this.nulos));
+localStorage.setItem('totalA', JSON.stringify(this.total));
 this.router.navigate(['/concejales']);
 
 }
@@ -70,5 +86,10 @@ event.target.value = valor
   setFilaActiva(index: number | null) {
     this.filaActiva = index;
   }
-
+  seleccionarContenido2(event: any) {
+  const el = event.target as HTMLIonInputElement;
+  el.getInputElement().then(input => {
+    input.select();
+  });
+}
 }

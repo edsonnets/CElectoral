@@ -7,6 +7,11 @@
       <Strong>Concejales</Strong>
       <div class="admin">Quillacollo</div>
     </ion-title>
+    <ion-buttons slot="start">
+      {{mesa}}
+
+    </ion-buttons>
+
     <ion-buttons slot="end">
       <img src="assets/logo.jpeg" width="40px" heigth="36px" >
     </ion-buttons>
@@ -47,12 +52,14 @@
     </ion-col>
 
 <ion-col size="2" class="center">
-    <ion-input type="text" style ="background-color: rgb(182, 185, 188); border: darkblue; border-color: black;"
+    <ion-input type="text" style="background-color: rgb(182, 185, 188); border: 1px solid #00008b; border-radius: 4px; padding: 0 5px;"
     inputmode="numeric"
     class="input-votos"
     maxlength="3"
     [(ngModel)]="c.votos"
     (ionInput)="soloNumeros($event)"
+    (ionFocus)="setFilaActiva(i); seleccionarContenido($event)"
+    (ionBlur)="setFilaActiva(null)"
     >   </ion-input>
 </ion-col>
 
@@ -68,10 +75,11 @@
 
 <ion-col size="2" class="center">
 
-<ion-input style ="background-color: rgb(182, 185, 188); border: darkblue; border-color: black;"
+<ion-input style="background-color: rgb(182, 185, 188); border: 1px solid #00008b; border-radius: 4px; padding: 0 5px;"
 type="number"
 [(ngModel)]="blancos"
 (input)="soloNumeros($event)"
+(ionFocus)="seleccionarContenido2($event)"
 ></ion-input>
 
 </ion-col>
@@ -88,12 +96,13 @@ type="number"
 
 <ion-col size="2" class="center">
 
-<ion-input style ="background-color: rgb(182, 185, 188); border: darkblue; border-color: black;"
+<ion-input style="background-color: rgb(182, 185, 188); border: 1px solid #00008b; border-radius: 4px; padding: 0 5px;"
   type="number"
   [(ngModel)]="nulos"
   (input)="soloNumeros($event)"
+  (ionFocus)="seleccionarContenido2($event)"
   min="0"
-  max="9999"
+  max="999"
   class="input-votos"
 ></ion-input>
 </ion-col>

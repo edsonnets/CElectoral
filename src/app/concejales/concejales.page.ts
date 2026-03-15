@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component,OnInit,OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 import { CommonModule } from '@angular/common';
@@ -11,8 +11,8 @@ standalone: true,
 imports: [IonicModule, CommonModule, FormsModule]
 })
 
-export class ConcejalesPage {
-
+export class ConcejalesPage implements OnInit, OnDestroy{
+filaActiva: number | null = null;
 concejales= [
     { "id": 1, "partido": "UNE", "candidato": "BLADIMIR VARGAS ROJAS", "logo": "une.jpg", "votos": 0 },
     { "id": 2, "partido": "FAP", "candidato": "HEEDY GIOVANNA FLORES RODRIGUEZ", "logo": "fap.png", "votos": 0 },
@@ -32,9 +32,18 @@ concejales= [
 
 blancos = 0;
 nulos = 0;
-
+mesa="";
 constructor(private router: Router) {}
 
+ngOnInit(): void {
+    this.mesa = localStorage.getItem("mesa")!;
+}
+ngOnDestroy(): void {
+  localStorage.setItem("votosConcejales", JSON.stringify(this.concejales));
+  localStorage.setItem('blancosC', JSON.stringify(this.blancos));
+  localStorage.setItem('nulosC', JSON.stringify(this.nulos));
+  localStorage.setItem('totalC', JSON.stringify(this.total));
+}
 get total() {
 
 let suma = this.concejales.reduce((a,b)=>a + Number(b.votos),0);
@@ -46,6 +55,9 @@ return suma + Number(this.blancos) + Number(this.nulos);
 continuar(){
 
 localStorage.setItem("votosConcejales", JSON.stringify(this.concejales));
+localStorage.setItem('blancosC', JSON.stringify(this.blancos));
+localStorage.setItem('nulosC', JSON.stringify(this.nulos));
+localStorage.setItem('totalC', JSON.stringify(this.total));
 this.router.navigate(['/resumen']);
 
 }
@@ -58,5 +70,22 @@ valor = valor.replace(/[^0-9]/g,'')
 event.target.value = valor
 
 }
+// Función para seleccionar el contenido al hacer foco
+  seleccionarContenido(event: any) {
+    // Usamos el input nativo dentro de ion-input
+    const input = event.target.querySelector('input');
+    if (input) {
+      setTimeout(() => input.select(), 50);
+    }
+  }
 
+  setFilaActiva(index: number | null) {
+    this.filaActiva = index;
+  }
+  seleccionarContenido2(event: any) {
+  const el = event.target as HTMLIonInputElement;
+  el.getInputElement().then(input => {
+    input.select();
+  });
+}
 }

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component,OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 import { CommonModule } from '@angular/common';
@@ -11,13 +11,19 @@ standalone: true,
 imports: [IonicModule, CommonModule, FormsModule]
 })
 
-export class MesaPage {
-
+export class MesaPage implements OnInit {
+user:any;
 mesa = "";
 recinto = "";
-
+nom="";
 constructor(private router: Router) {}
 
+ngOnInit(): void {
+  this.user = JSON.parse(localStorage.getItem('usuario')!);
+  this.mesa=this.user.numTable;
+  this.nom=this.user.name;
+  //recinto=this.user.numrecinto;
+}
 continuar() {
 
 localStorage.setItem("mesa", this.mesa);

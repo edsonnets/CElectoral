@@ -19,11 +19,15 @@ export class ResumenPage implements OnInit {
 
   // Variable para almacenar la foto
   fotoActa: string | undefined = undefined;
-
+  fotoActa2: string | undefined = undefined;
   constructor(private toastController: ToastController) {}
 
   ngOnInit() {
-    this.cargarTotales();
+    this.mesa = localStorage.getItem('mesa') || '';
+    this.recinto = localStorage.getItem('recinto') || '';
+    this.totalAlcalde = Number(localStorage.getItem('totalA') || '0');
+    this.totalConcejal = Number(localStorage.getItem('totalC') || '0');
+    //this.cargarTotales();
   }
 
   cargarTotales() {
@@ -43,6 +47,17 @@ export class ResumenPage implements OnInit {
 
     this.fotoActa = `data:image/jpeg;base64,${image.base64String}`;
   }
+  async tomarFoto2() {
+    const image = await Camera.getPhoto({
+      quality: 90,
+      allowEditing: false,
+      resultType: CameraResultType.Base64,
+      source: CameraSource.Camera // Abre la cámara directamente
+    });
+
+    this.fotoActa2 = `data:image/jpeg;base64,${image.base64String}`;
+  }
+
 
   async enviarDatos() {
     if (!this.mesa || !this.recinto || !this.fotoActa) {
