@@ -19,7 +19,7 @@ candidatos = [
 {partido:"LIBRE",nombre:"Marcos Cabrera",logo:"libre.jpg",votos:0},
 {partido:"MTS",nombre:"Ariel Ramallo",logo:"mts.jpg",votos:0},
 {partido:"NGP",nombre:"Carlos López",logo:"ngp.jpg",votos:0},
-{partido:"Soluciones con Todos",nombre:"Charles Becerra",logo:"sol.jpg",votos:0},
+{partido:"Solucion con Todos",nombre:"Charles Becerra",logo:"sol.jpg",votos:0},
 {partido:"Fuerza Social",nombre:"Roberto Sarabia",logo:"fs.jpg",votos:0},
 {partido:"PDC",nombre:"Edwin Vargas",logo:"pdc.png",votos:0},
 {partido:"APB-SUMATE",nombre:"Percy Rosas",logo:"sumate.png",votos:0},

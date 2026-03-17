@@ -22,7 +22,7 @@ ngOnInit(): void {
   this.user = JSON.parse(localStorage.getItem('usuario')!);
   this.mesa=this.user.numTable;
   this.nom=this.user.name;
-  //recinto=this.user.numrecinto;
+  this.recinto=this.user.institution;
 }
 continuar() {
 

@@ -99,10 +99,13 @@ export class LoginPage implements OnInit {
           console.log('El data de user es : ',data)
               let usuario= data.user;
               if(usuario){
-
+                  console.log('Data es: ',data)
                   console.log('El logeado es: ',usuario)
                   //localStorage.setItem('token',JSON.stringify(data.token))
                   localStorage.setItem('usuario',JSON.stringify(usuario))
+                  localStorage.setItem('mesa',JSON.stringify(usuario.mesa))
+                  localStorage.setItem('usuario',JSON.stringify(usuario))
+
                   this.route.navigate(["/mesa"]);
                 //localStorage.setItem('user', JSON.stringify(usuario))
 

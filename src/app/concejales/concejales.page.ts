@@ -30,8 +30,8 @@ concejales= [
     { "id": 14, "partido": "FRI", "candidato": "DENIS ALBARO CABERO RIOS", "logo": "fri.png", "votos": 0 }
   ]
 
-blancos = 0;
-nulos = 0;
+blancosC = 0;
+nulosC = 0;
 mesa="";
 constructor(private router: Router) {}
 
@@ -40,23 +40,23 @@ ngOnInit(): void {
 }
 ngOnDestroy(): void {
   localStorage.setItem("votosConcejales", JSON.stringify(this.concejales));
-  localStorage.setItem('blancosC', JSON.stringify(this.blancos));
-  localStorage.setItem('nulosC', JSON.stringify(this.nulos));
+  localStorage.setItem('blancosC', JSON.stringify(this.blancosC));
+  localStorage.setItem('nulosC', JSON.stringify(this.nulosC));
   localStorage.setItem('totalC', JSON.stringify(this.total));
 }
 get total() {
 
 let suma = this.concejales.reduce((a,b)=>a + Number(b.votos),0);
 
-return suma + Number(this.blancos) + Number(this.nulos);
+return suma + Number(this.blancosC) + Number(this.nulosC);
 
 }
 
 continuar(){
 
 localStorage.setItem("votosConcejales", JSON.stringify(this.concejales));
-localStorage.setItem('blancosC', JSON.stringify(this.blancos));
-localStorage.setItem('nulosC', JSON.stringify(this.nulos));
+localStorage.setItem('blancosC', JSON.stringify(this.blancosC));
+localStorage.setItem('nulosC', JSON.stringify(this.nulosC));
 localStorage.setItem('totalC', JSON.stringify(this.total));
 this.router.navigate(['/resumen']);
 

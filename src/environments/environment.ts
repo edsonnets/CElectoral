@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  BaseUrl: 'http://localhost:3000/api/',
+  BaseUrl: 'https://electoral-zeta.vercel.app/api/',
 };
 
 /*

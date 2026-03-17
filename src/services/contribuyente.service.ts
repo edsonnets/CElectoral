@@ -5,7 +5,7 @@ import { HttpClient } from '@angular/common/http';
 //import { Contribuyente } from '../models/contribuyente.model';
 
 
-const baseUrl= `${environment.BaseUrl}contribuyentes`;
+const baseUrl= `${environment.BaseUrl}`;
 @Injectable({
   providedIn: 'root'
 })
@@ -16,13 +16,13 @@ export class ContribuyenteService {
     return this.http.post<any>(`${environment.BaseUrl}auth/login`, { email, password });
   }
 
-  getAllContribuyentes(desde:string, hasta:string): Observable<any[]> {
-    return this.http.get<any[]>(`${baseUrl}`); //{'headers': this.headers.getHeaders()}
+  getAllCandidatos(): Observable<any> {
+    return this.http.get<any>(`${baseUrl}candidates`); //{'headers': this.headers.getHeaders()}
     }
 
 
-  createContribuyente(cont:any):  Observable<any> {
-    return this.http.post<any>(`${baseUrl}`,cont);//,{'headers': this.headers.getHeaders()}
+  Guardavotos  (cont:any):  Observable<any> {
+    return this.http.post<any>(`${baseUrl}votes/register`,cont);//,{'headers': this.headers.getHeaders()}
     }
   /*upDateContribuyente(cont:Contribuyente):  Observable<Contribuyente> {
       return this.http.put<Contribuyente>(`${baseUrl}`,cont,{'headers': this.headers.getHeaders()});
