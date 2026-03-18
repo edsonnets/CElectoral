@@ -5,10 +5,10 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { provideHttpClient } from '@angular/common/http';
 
-import { UtilsService } from '../../services/utils.service';
+import { UtilsService } from '../services/utils.service';
 //import {User} from '../../models/user.model'
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ContribuyenteService } from 'src/services/contribuyente.service';
+import { ContribuyenteService } from 'src/app/services/contribuyente.service';
 import { SharedModule } from 'src/app/shared/shared.module';
 
 @Component({

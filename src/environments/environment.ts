@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  BaseUrl: 'https://181.177.143.187:3000/api/',
+  BaseUrl: 'http://localhost:3000/api/',
 };
 
 /*

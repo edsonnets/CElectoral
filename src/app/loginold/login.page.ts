@@ -2,10 +2,10 @@ import { Component, OnInit, inject } from '@angular/core';
 import { Route, Router, RouterLink } from '@angular/router';
 //import { AsignacionFuncionarioAlmacenService } from 'src/app/services/asignacion-funcionario-almacen.service';
 
-import { UtilsService } from '../../services/utils.service';
+import { UtilsService } from '../services/utils.service';
 //import {User} from '../../models/user.model'
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ContribuyenteService } from 'src/services/contribuyente.service';
+import { ContribuyenteService } from 'src/app/services/contribuyente.service';
 
 @Component({
   selector: 'app-login',

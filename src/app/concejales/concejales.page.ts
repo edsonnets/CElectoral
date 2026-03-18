@@ -19,7 +19,7 @@ concejales= [
     { "id": 3, "partido": "LIBRE", "candidato": "LIVIO JHASMANY TERAN ZENTENO", "logo": "libre.jpg", "votos": 0 },
     { "id": 4, "partido": "MTS", "candidato": "JOHNNY ROQUE OCHOA", "logo": "mts.jpg", "votos": 0 },
     { "id": 5, "partido": "NGP", "candidato": "KARINA AMPARO RICO MUÑOZ", "logo": "ngp.jpg", "votos": 0 },
-    { "id": 6, "partido": "Soluciones con Todos", "candidato": "CASTO RODRIGUEZ CHOQUE", "logo": "sol.jpg", "votos": 0 },
+    { "id": 6, "partido": "Solucion con Todos", "candidato": "CASTO RODRIGUEZ CHOQUE", "logo": "sol.jpg", "votos": 0 },
     { "id": 7, "partido": "Fuerza Social", "candidato": "JOSE LUIS FERNANDEZ QUINT", "logo": "fs.jpg", "votos": 0 },
     { "id": 8, "partido": "PDC", "candidato": "ESTEFANIA TORREZ SAN MIGUEL", "logo": "pdc.png", "votos": 0 },
     { "id": 9, "partido": "APB-SUMATE", "candidato": "LEYDI CARLA SANTOS ESCALE", "logo": "sumate.png", "votos": 0 },
@@ -88,4 +88,10 @@ event.target.value = valor
     input.select();
   });
 }
+
+irAMesa() {
+  // Aquí podrías poner un console.log o limpiar variables si fuera necesario
+  this.router.navigate(['/mesa']);
+}
+
 }

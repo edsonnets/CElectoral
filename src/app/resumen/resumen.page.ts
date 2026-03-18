@@ -2,8 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { IonicModule, ToastController } from '@ionic/angular';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AlertController } from '@ionic/angular';
 import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
-import { ContribuyenteService } from 'src/services/contribuyente.service';
+import { ContribuyenteService } from 'src/app/services/contribuyente.service';
+
 @Component({
   selector: 'app-resumen',
   templateUrl: './resumen.page.html',
@@ -30,7 +33,7 @@ export class ResumenPage implements OnInit {
   candidatos: any[] = [];
   votosA: any[] = [];
   votosC: any[] = [];
-  constructor(private toastController: ToastController, private back: ContribuyenteService) {}
+  constructor(private toastController: ToastController, private back: ContribuyenteService, private router: Router, private alertController: AlertController) {}
 
   ngOnInit() {
         this.mesa = localStorage.getItem('mesa') || '';
@@ -182,14 +185,56 @@ export class ResumenPage implements OnInit {
     console.log('Payload final a enviar:', envio);
     this.back.Guardavotos(envio).subscribe(
     { next: (data:any)=>{
+        this.mostrarMensaje('Datos enviados correctamente');
         console.log('Respuesta del servidor:', data);
 
       },
       error: (error)=>{
+        this.mostrarMensaje(error.error?.message || 'Error al enviar datos');
         console.log('Error al enviar datos:', error);
       }
   });
 
-      }
+  }
+
+  async onLogout() {
+    const alert = await this.alertController.create({
+      header: 'Confirmar',
+      message: '¿Estás seguro de que quieres cerrar sesión?',
+      buttons: [
+        { text: 'Cancelar', role: 'cancel' },
+        {
+          text: 'Salir',
+          handler: () => {
+            this.logout();
+          }
+        }
+      ]
+    });
+
+    await alert.present();
+  }
+  logout() {
+    // 1. Borrar tokens o datos de sesión
+    localStorage.removeItem('user_token');
+    localStorage.clear(); // Opcional: limpia todo el storage
+
+    // 2. Si usas cookies con withCredentials, el backend debería tener
+    // un endpoint para limpiar la cookie, pero en el front simplemente:
+
+    // 3. Redirigir a la pantalla de Login
+    // Use 'replaceUrl' para que el usuario no pueda volver atrás con el botón del móvil
+    this.router.navigate(['/login'], { replaceUrl: true });
+  }
+  async mostrarMensaje(cadena: string) {
+    const alert = await this.alertController.create({
+      header: 'Atención',
+      message: cadena,
+      buttons: ['OK'], // El botón simple
+      backdropDismiss: false // Evita que se cierre al tocar fuera (opcional)
+    });
+
+    await alert.present();
+  }
 
 }
